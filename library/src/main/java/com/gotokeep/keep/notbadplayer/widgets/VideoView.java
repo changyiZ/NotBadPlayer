@@ -43,6 +43,8 @@ import com.gotokeep.keep.notbadplayer.utils.Repeater;
 
 public class VideoView extends RelativeLayout {
 
+    private Uri videoUri;
+
     private VideoViewApi videoView;
     private ImageView previewImageView;
     private View startButton;
@@ -168,11 +170,23 @@ public class VideoView extends RelativeLayout {
     }
 
     /**
+     * Retrieves the current Video URI.  If this hasn't been set with {@link #setVideoURI(android.net.Uri)}
+     * or {@link #setVideoPath(String)} then null will be returned.
+     *
+     * @return The current video URI or null
+     */
+    @Nullable
+    public Uri getVideoUri() {
+        return videoUri;
+    }
+
+    /**
      * Sets the Uri location for the video to play
      *
      * @param uri The video's Uri
      */
     public void setVideoURI(@Nullable Uri uri) {
+        this.videoUri = uri;
         videoView.setVideoUri(uri);
 
         if (videoControls != null) {
@@ -187,6 +201,7 @@ public class VideoView extends RelativeLayout {
      * @param mediaSource MediaSource that should be used
      */
     public void setVideoURI(@Nullable Uri uri, @Nullable MediaSource mediaSource) {
+        this.videoUri = uri;
         videoView.setVideoUri(uri, mediaSource);
 
         if (videoControls != null) {
@@ -392,9 +407,9 @@ public class VideoView extends RelativeLayout {
      * @return {@code true} if the video was successfully restarted, otherwise {@code false}
      */
     public boolean restart() {
-        /*if (videoUri == null) {
+        if (videoUri == null) {
             return false;
-        }*/
+        }
 
         if (videoView.restart()) {
             if (videoControls != null) {

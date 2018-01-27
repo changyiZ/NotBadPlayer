@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.gotokeep.keep.notbadplayer.widgets.VideoView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/video_view"
+    android:id="@+id/container2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:videoScaleType="fitCenter" />
+    android:layout_height="match_parent">
+
+    <!--<com.gotokeep.keep.notbadplayer.widgets.VideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        app:videoScaleType="fitCenter" />-->
+</RelativeLayout>

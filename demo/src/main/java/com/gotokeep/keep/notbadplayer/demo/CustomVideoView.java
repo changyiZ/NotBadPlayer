@@ -1,7 +1,6 @@
 package com.gotokeep.keep.notbadplayer.demo;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -45,9 +44,6 @@ public class CustomVideoView extends VideoView {
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-            pause();
-            Context context = getContext();
-            context.startActivity(new Intent(context, VideoPlayerActivity.class));
             return true;
         }
     }

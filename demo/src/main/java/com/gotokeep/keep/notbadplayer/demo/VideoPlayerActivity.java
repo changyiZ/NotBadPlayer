@@ -1,9 +1,12 @@
 package com.gotokeep.keep.notbadplayer.demo;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ViewGroup;
 
+import com.gotokeep.keep.notbadplayer.VideoPlayManager;
 import com.gotokeep.keep.notbadplayer.widgets.VideoView;
 
 /**
@@ -20,8 +23,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_video_player);
-
         VideoView videoView = findViewById(R.id.video_view);
-        videoView.start();
+        videoView = VideoPlayManager.INSTANCE.smartPlaying((ViewGroup) findViewById(R.id.container2), videoView, 0, Uri.parse(MainActivity.video_url));
     }
 }
