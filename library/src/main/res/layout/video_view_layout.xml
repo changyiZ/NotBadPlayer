@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="#1F1F1F">
+
+    <com.gotokeep.keep.notbadplayer.widgets.ExoTextureVideoView
+        android:id="@+id/video_player_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/preview_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/start_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/icon_player_play"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/player_controller_panel"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#80000000">
+
+        <ImageView
+            android:id="@+id/play_button"
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@drawable/icon_player_play_small"/>
+
+        <TextView
+            android:id="@+id/time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            android:layout_alignParentRight="true"
+            android:textColor="#FFF"
+            android:textSize="12dp"
+            tools:text="00:25 / 05:08" />
+
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/time_label"
+            android:layout_toRightOf="@id/play_button"
+            android:max="100"
+            android:maxHeight="5dp"
+            android:minHeight="5dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:progressDrawable="@drawable/player_seekbar_drawable"
+            android:splitTrack="false"
+            android:thumb="@drawable/player_seekbar_thumb"
+            tools:progress="50"
+            tools:secondaryProgress="80" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawablePadding="4dp"
+        android:textColor="#FFF"
+        android:textSize="14dp"
+        tools:drawableTop="@drawable/tik_tok_progress_drawable"
+        tools:text="加载中" />
+</RelativeLayout>

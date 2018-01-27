@@ -1,0 +1,4 @@
+<resources>
+    <string name="player_loading">加载中</string>
+    <string name="video_loading_error">视频不存在</string>
+</resources>
