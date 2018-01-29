@@ -27,11 +27,11 @@ public enum  VideoPlayManager {
 
     INSTANCE;
 
-    private VideoView videoView;
+    private WeakReference<VideoView> videoViewWeakReference;
 
     public Playable hold(@NonNull final VideoView videoView) {
-        this.videoView = videoView;
-        this.videoView.setReleaseOnDetachFromWindow(false);
+        videoView.setReleaseOnDetachFromWindow(false);
+        videoViewWeakReference = new WeakReference<>(videoView);
 
         Playable playable = null;
         final ViewGroup parent = (ViewGroup) videoView.getParent();
@@ -65,23 +65,26 @@ public enum  VideoPlayManager {
     }
 
     public VideoView smartPlaying(@NonNull ViewGroup parent, @Nullable VideoView videoViewReady, int index, @NonNull Uri uri) {
-        if (videoView != null) {
-            Uri videoUri = videoView.getVideoUri();
-            // It is re-useful only in case of the same Uri.
-            if (videoUri != null && videoUri.equals(uri)) {
-                // Remove duplicated video view which may existed.
-                if (videoViewReady != null) {
-                    parent.removeView(videoViewReady);
+        if (videoViewWeakReference != null) {
+            VideoView videoView = videoViewWeakReference.get();
+            if (videoView != null) {
+                Uri videoUri = videoView.getVideoUri();
+                // It is re-useful only in case of the same Uri.
+                if (videoUri != null && videoUri.equals(uri)) {
+                    // Remove duplicated video view which may existed.
+                    if (videoViewReady != null) {
+                        parent.removeView(videoViewReady);
+                    }
+                    // Move reUseful video view from old parent into new one.
+                    ViewGroup lastParent = (ViewGroup) videoView.getParent();
+                    if (lastParent != null) {
+                        lastParent.removeView(videoView);
+                    }
+                    parent.addView(videoView, index);
+                    // Play it.
+                    videoView.start();
+                    return videoView;
                 }
-                // Move reUseful video view from old parent into new one.
-                ViewGroup lastParent = (ViewGroup) videoView.getParent();
-                if (lastParent != null) {
-                    lastParent.removeView(videoView);
-                }
-                parent.addView(videoView, index);
-                // Play it.
-                videoView.start();
-                return videoView;
             }
         }
         if (videoViewReady == null || videoViewReady.getParent() != parent) {
@@ -94,13 +97,6 @@ public enum  VideoPlayManager {
         videoViewReady.setVideoURI(uri);
         videoViewReady.start();
         return videoViewReady;
-    }
-
-    public void release() {
-        if (this.videoView != null) {
-            this.videoView.setReleaseOnDetachFromWindow(true);
-            this.videoView = null;
-        }
     }
 
     static class BackToPlayListener implements LifecycleObserver {

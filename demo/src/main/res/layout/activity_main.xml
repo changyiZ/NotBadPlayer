@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container1"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.gotokeep.keep.notbadplayer.widgets.VideoView
-        android:id="@+id/video_view"
+    <RelativeLayout
+        android:id="@+id/video_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:videoScaleType="fitCenter" />
+        android:layout_height="240dp"
+        android:layout_centerVertical="true"
+        android:background="#000"
+        android:transitionName="video_play_container">
 
+        <com.gotokeep.keep.notbadplayer.widgets.VideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:videoScaleType="fitCenter" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/go_detail_button"
@@ -18,5 +25,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Click me!"/>
+        android:text="Click me!" />
 </RelativeLayout>

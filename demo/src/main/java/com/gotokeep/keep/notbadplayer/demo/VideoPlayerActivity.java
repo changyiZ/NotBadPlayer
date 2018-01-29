@@ -24,6 +24,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_video_player);
         VideoView videoView = findViewById(R.id.video_view);
-        videoView = VideoPlayManager.INSTANCE.smartPlaying((ViewGroup) findViewById(R.id.container2), videoView, 0, Uri.parse(MainActivity.video_url));
+        videoView = VideoPlayManager.INSTANCE.smartPlaying((ViewGroup) findViewById(R.id.video_container2), videoView, 0, Uri.parse(MainActivity.video_url));
     }
 }
